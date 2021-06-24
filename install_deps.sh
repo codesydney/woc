@@ -4,7 +4,7 @@
 react_dep() {
     rm -rf server/node_modules;
     cd web;
-    echo "[WEB] installing dependencies, give this asec";
+    echo "[WEB] installing dependencies, give this a sec";
     npm i > /dev/null 2>&1;
 
     echo "[WEB] instalation complete";
