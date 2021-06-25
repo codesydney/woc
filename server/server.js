@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // database connection ---------------------------------------------------------------------------------------
-const serviceAccountKey = require(/* firebase file */);
+const serviceAccountKey = require('./config/serviceAccountKey.json');
 firebaseAdmin.initializeApp({
     credential: firebaseAdmin.credential.cert({ serviceAccountKey }),
 });
