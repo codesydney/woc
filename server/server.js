@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const firebaseAdmin = require('firebase-admin');
 
 const logging = require('./config/logging');
 const config = require('./config/config');
@@ -18,6 +19,12 @@ const NAMESPACE = 'SERVER';
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// database connection ---------------------------------------------------------------------------------------
+const serviceAccountKey = require(/* firebase file */);
+firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert({ serviceAccountKey }),
+});
 
 // database connection ---------------------------------------------------------------------------------------
 mongoose
