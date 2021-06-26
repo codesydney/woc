@@ -1,5 +1,5 @@
 const app = require('express')();
-const { verifyToken, verifyAdmin } = require('../utils/verifyToken');
+const { verifyToken, verifyAdmin } = require('../middlewares/verifyToken');
 const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 

@@ -5,7 +5,7 @@ const firebaseAdmin = require('firebase-admin');
 
 const logging = require('./config/logging');
 const config = require('./config/config');
-const serverUtils = require('./utils/server.util');
+const serverMiddleware = require('./middlewares/serverMiddleware');
 
 require('dotenv').config();
 
@@ -23,7 +23,7 @@ app.use(express.json());
 // database connection ---------------------------------------------------------------------------------------
 const serviceAccountKey = require('./config/serviceAccountKey.json');
 firebaseAdmin.initializeApp({
-    credential: firebaseAdmin.credential.cert({ serviceAccountKey }),
+    credential: firebaseAdmin.credential.cert(serviceAccountKey),
 });
 
 // database connection ---------------------------------------------------------------------------------------
@@ -33,17 +33,17 @@ mongoose
     .catch((err) => logging.error(NAMESPACE, err.message, err));
 
 // middlewares -----------------------------------------------------------------------------------------------
-app.use(serverUtils.logAllRequests);
+app.use(serverMiddleware.logAllRequests);
 
 // serving static file ---------------------------------------------------------------------------------------
 app.use(express.static(path.resolve(__dirname, '../web', 'build')));
 
 // api routing -----------------------------------------------------------------------------------------------
-app.use('/api', require('./routes/routes'));
+app.use('/api', require('./routes'));
 
 // error handling --------------------------------------------------------------------------------------------
-app.use(serverUtils.errHandling);
-app.get('*', serverUtils.redirectToIndex);
+app.use(serverMiddleware.errHandling);
+app.get('*', serverMiddleware.redirectToIndex);
 
 // start the server ------------------------------------------------------------------------------------------
 app.listen(config.server.port, () => {

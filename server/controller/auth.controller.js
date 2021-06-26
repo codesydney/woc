@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const authUtil = require('../utils/auth.util');
+const authUtil = require('../utils/auth');
 
 const User = require('../models/user.model');
 const logging = require('../config/logging');

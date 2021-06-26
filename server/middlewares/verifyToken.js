@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { authErrMsg } = require('../utils/auth.util');
+const { authErrMsg } = require('../utils/auth');
 const User = require('../models/user.model');
 
 const NAMESPACE = 'VERIFYTOKEN';

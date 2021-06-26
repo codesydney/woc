@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const controller = require('../controller/user.controller');
-const { verifyToken: validateToken } = require('../utils/verifyToken');
+const { verifyToken: validateToken } = require('../middlewares/verifyToken');
 
 /* 
     crud operations for a user
