@@ -6,6 +6,7 @@ const NAMESPACE = 'VERIFYTOKEN';
 /**
  *  Validate token then bind user data to req.user
  *  return 401 if token is bad
+ *
  */
 module.exports.verifyToken = async (req, res, next) => {
     // token validation
