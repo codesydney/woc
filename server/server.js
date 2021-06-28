@@ -1,13 +1,14 @@
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose');
-const firebaseAdmin = require('firebase-admin');
 
 const logging = require('./config/logging');
 const config = require('./config/config');
 const serverMiddleware = require('./middlewares/serverMiddleware');
 
-require('dotenv').config();
+const NAMESPACE = 'Server';
+/* 
+    This be the big un
+*/
 
 /**
  * TODO:
@@ -15,24 +16,13 @@ require('dotenv').config();
  */
 
 // server config ------------------------------------------------------------------------------------------
-const NAMESPACE = 'SERVER';
 const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// database connection ---------------------------------------------------------------------------------------
-const serviceAccountKey = require('./config/serviceAccountKey.json');
-firebaseAdmin.initializeApp({
-    credential: firebaseAdmin.credential.cert(serviceAccountKey),
-});
-
-// database connection ---------------------------------------------------------------------------------------
-mongoose
-    .connect(config.db.uri, config.db.config)
-    .then((res) => logging.info(NAMESPACE, 'Mongo connected'))
-    .catch((err) => logging.error(NAMESPACE, err.message, err));
+require('./config/connectMongo'); // connecting to database
+require('./config/connectFirebase'); // connecting to firebase for Auth
 
 // middlewares -----------------------------------------------------------------------------------------------
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(serverMiddleware.logAllRequests);
 
 // serving static file ---------------------------------------------------------------------------------------
