@@ -2,6 +2,7 @@ const app = require('express')();
 const { verifyToken, verifyAdmin } = require('../utils/verifyToken');
 const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
+const eventsRoute = require('./events.route');
 
 /* 
     grouping REST routing path
@@ -9,6 +10,7 @@ const userRoute = require('./user.route');
 
 // open =================================================================
 app.use('/auth', authRoute);
+app.use('/events', eventsRoute);
 
 // user only ============================================================
 app.use(verifyToken);
@@ -21,3 +23,4 @@ app.get('/admin', (req, res) => {
 });
 
 module.exports = app;
+

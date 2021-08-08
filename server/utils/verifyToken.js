@@ -11,7 +11,7 @@ module.exports.verifyToken = async (req, res, next) => {
     // token validation
     const auth = req.header('Authorization');
     const token = auth.split(' ')[1];
-
+    
     try {
         const payload = await jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findOne({ _id: payload.id });

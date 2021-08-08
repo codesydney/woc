@@ -1,7 +1,7 @@
 const User = require('../models/user.model');
 
 const getUser = async (req, res) => {
-    console.log(req.user);
+        console.log(req.user);
     const data = {
         firstName: req.user.firstName,
         lastName: req.user.lastName,
