@@ -35,19 +35,29 @@ const UserProfile = ({ profile }) => {
         setOpen(true);
     };
 
+    const longName = (name.length + lastName.length + 1) < 13;
+    
     return (
         <>
             <Container>
                 {/* main logo and text */}
-                <Grid container className={classes.root} align="center" spacing={3} sm={12}>
+                <Grid container className={classes.root} align="center" sm={12}>
                     <Grid item className={classes.backgroundStyle}>
                         <img src={picture} className={classes.profilePic} alt="Profile" />
                         <div>
                             <UploadPhoto />
-                            <h3 className={classes.userName}>
-                                {name} {lastName}
-                            </h3>
-
+                            {longName ? (
+                                <h3 className={classes.userName}>
+                                    {name} {lastName}
+                                </h3>
+                             ) : (
+                                <h3 className={classes.userName}>
+                                    {name}
+                                    <br/>
+                                    {lastName}
+                                </h3>
+                            )}
+                            
                             <h5 className={classes.userOccupation}>
                                 {" "}
                                 <LocationOnOutlinedIcon /> {location}
@@ -56,8 +66,8 @@ const UserProfile = ({ profile }) => {
                         <br></br>
                     </Grid>
 
-                    <Grid className={classes.userInfo} item sm={12} md={6} lg={6}>
-                        <IconButton onClick={openDialog} style={{ marginLeft: "500px" }}>
+                    <Grid className={classes.userInfo} item sm={12} md={8} lg={8}>
+                        <IconButton onClick={openDialog} style={{ marginLeft: "470px" }}>
                             <EditIcon />
                         </IconButton>
                         <div className={classes.profileInnerDiv}>

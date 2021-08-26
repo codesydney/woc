@@ -1,8 +1,9 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import img1 from "../../../res/img/woc.jpg";
-import { Grid } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import EventCard from "./EventCard";
+import styles from "./UserEvent.style";
 
 /* We upload all the images with titles and date from the user details*/
 const slideImages = [
@@ -35,7 +36,7 @@ const slideImages = [
 const responsiveCarousel = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
-        items: 5,
+        items: 4,
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -51,22 +52,30 @@ const responsiveCarousel = {
     },
 };
 
+
+
 /* NOTE: the carousel is fine but for now needs a lot of refining */
-function UserEvents() {
+const UserEvents = () => {
+    const classes = styles();
+
     return (
         <>
-            <h2>Upcoming Events</h2>
-            <Grid>
-                <Carousel responsive={responsiveCarousel}>
-                    {slideImages.map((item) => {
-                        return (
-                            <Grid item={true}>
-                                <EventCard key={item.id} event={item} />
-                            </Grid>
-                        );
-                    })}
-                </Carousel>
-            </Grid>
+            <Container>
+                <h2>Upcoming Events</h2>
+                <Grid container clasName={classes.root} justify={"center"}>
+                    <Grid item className={classes.backgroundStyle} md={11}>
+                        <Carousel responsive={responsiveCarousel} itemClass={"spacing=2"}>
+                            {slideImages.map((item) => {
+                                return (
+                                    <Grid item={true}>
+                                        <EventCard key={item.id} event={item}/>
+                                    </Grid>
+                                );
+                            })}
+                        </Carousel>
+                    </Grid>
+                </Grid>
+            </Container>
         </>
     );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Course from "../course/Course";
-import { Grid } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
+import styles from "./UserCourses.style";
 
 const course = [
     {
@@ -24,6 +25,7 @@ const course = [
 ];
 
 function UserCourses() {
+    const classes = styles(); 
     const renderCourses = course.map((course) => (
         <Grid item>
             <Course key={course.id} course={course} />
@@ -32,10 +34,14 @@ function UserCourses() {
 
     return (
         <>
-            <h2>Enrolled Courses</h2>
-            <Grid container spacing={3} wrap={"nowrap"}>
-                {renderCourses}
-            </Grid>
+            <Container>
+                <h2>Enrolled Courses</h2>
+                <Grid container clasName={classes.root} justify={"center"}>
+                    <Grid item className={classes.backgroundStyle} md={11} spacing={3} wrap={"nowrap"}>
+                        {renderCourses}
+                    </Grid>
+                </Grid>
+            </Container>
         </>
     );
 }

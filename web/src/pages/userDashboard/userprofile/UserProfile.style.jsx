@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const styles = makeStyles((theme) => ({
     root: {
         display: "flex",
-        justifyContent: "left",
+        justifyContent: "center",
         marginBottom: "35px",
     },
     second: {
@@ -21,7 +21,6 @@ const styles = makeStyles((theme) => ({
     },
     backgroundStyle: {
         paddingTop: "26px",
-        marginRight: "16px",
         border: "2px solid lightgrey",
         padding: "10px",
         borderRadius: "25px",
@@ -52,7 +51,7 @@ const styles = makeStyles((theme) => ({
         fontFamily: `'Roboto Slab', serif`,
         fontSize: "9px",
         //paddingTop: "40px !important",
-        marginRight: "16px",
+        marginLeft: "10px",
         border: "2px solid lightgrey",
         padding: "10px",
         borderRadius: "25px",
